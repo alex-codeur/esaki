@@ -3,7 +3,6 @@
 {% block content %}
     {% for post in posts %}
         <div class="bg-white p-4 shadow-sm rounded-sm flex group">
-            
             <div class="flex-shrink-0">
                 <a href="#" class="hoverflow-hidden block">
                     <img src="https://dummyimage.com/200x150" alt="traversymedia" class="object-cover rounded transform hover:scale-110 transition duration-500">
@@ -24,7 +23,7 @@
                         <span class="mr-2 text-xs">
                             <i class="fa fa-user"></i>
                         </span>
-                        Blogging Tips
+                        {{ post.author.username }}
                     </div>
                     <div class="flex text-gray-400 text-xs items-center">
                         <span class="mr-1 text-xs">
@@ -36,4 +35,7 @@
             </div>
         </div>
     {% endfor %}
+        
+    {% include 'blog/layouts/pagination.html' with page=posts %}
+
 {% endblock content %}
