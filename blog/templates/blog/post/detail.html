@@ -3,9 +3,9 @@
 {% block content %}
     <div>
         <div class="bg-white shadow-sm rounded-sm">
-            <a href="#" class="hoverflow-hidden block">
-                <img src="images/photo2.jpg" alt="traversymedia" class="w-full h-96 object-cover rounded">
-            </a>
+            {% if post.image %}
+                <img src="{{ post.image.url }}" alt="traversymedia" class="w-full h-96 object-cover rounded">
+            {% endif %}
             <div class="p-4">
                 <div class="flex mt-3 space-x-5">
                     <div class="flex items-center text-gray-400 text-sm">

@@ -2,7 +2,20 @@ body {
     font-family: 'Roboto Mono', monospace;
 }
 
-
 img {
     display: inline-block;
+}
+
+@media screen and (max-width: 680px) {
+    .card {
+        flex-wrap: wrap;
+    }
+
+    .card-image {
+        width: 100%;
+    }
+
+    .card-text {
+        width: 100%;
+    }
 }
