@@ -1,0 +1,441 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <!-- Tailwind css -->
+    <link href="https://unpkg.com/tailwindcss@^2/dist/tailwind.min.css" rel="stylesheet">
+    <!-- font-awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" integrity="sha512-iecdLmaskl7CVkqkXNQ/ZH/XLlvWZOJyj7Yy7tcenmpD1ypASozpmT/E0iPtmFIB46ZmdtAc9eNBvH0H/ZpiBw==" crossorigin="anonymous" />
+    <!-- Google font -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto+Mono:wght@400;500;700&display=swap" rel="stylesheet">
+    
+    <!-- style -->
+    <link rel="stylesheet" href="{% static 'css/main.css' %}">
+    <title>Mon blog</title>
+</head>
+<body class="text-gray-600">
+    <nav class="bg-white shadow-sm">
+        <div class="container mx-auto px-4 py-3 flex items-center">
+            <div class="w-40">
+                <a href="{% url 'post_list' %}">
+                    <img src="{% static 'images/logo.svg.svg' %}" alt="logo-mini">
+                </a>
+            </div>
+    
+            <div class="ml-12 flex space-x-5 hidden lg:flex">
+                <a href="" class="flex items-center font-semibold text-sm hover:text-blue-500 transition">
+                    <span class="mr-2">
+                        <i class="fa fa-home"></i>
+                    </span>
+                    Accueil
+                </a>
+                <a href="" class="flex items-center font-semibold text-sm hover:text-blue-500 transition">
+                    <span class="mr-2">
+                        <i class="fa fa-file-alt"></i>
+                    </span>
+                    A propos
+                </a>
+                <a href="" class="flex items-center font-semibold text-sm hover:text-blue-500 transition">
+                    <span class="mr-2">
+                        <i class="fa fa-phone"></i>
+                    </span>
+                    Contact
+                </a>
+            </div>
+    
+            <div class="relative ml-auto hidden lg:block">
+                <span class="absolute left-3 top-2 text-sm text-gray-500">
+                    <i class="fa fa-search"></i>
+                </span>
+                <input type="text" class="block w-full border-none rounded-3xl pl-11 pr-2 py-2 focus:outline-none bg-gray-50 text-sm text-gray-700 shadow-sm" placeholder="Recherche...">
+            </div>
+
+            <div class="lg:ml-5 ml-auto">
+                <a href="#" class="flex items-center text-sm font-semibold hover:text-blue-500 transition">
+                    Se connecter/S'inscrire
+                </a>
+            </div>
+
+            <div class="ml-4 block xl:hidden text-xl text-gray-700 cursor-pointer hover:text-blue-500 transition" id="open_sidebar">
+                <i class="fa fa-bars"></i>
+            </div>
+        </div>
+    </nav>
+
+    <main class="py-12 bg-gray-100 min-h-screen">
+        <div class="container mx-auto px-4 flex flex-wrap lg:flex-nowrap">
+            <div class="w-3/12 hidden xl:block">
+                <div class="bg-white shadow-sm rounded-sm p-4">
+                    <h3 class="text-xl font-semibold text-gray-700 mb-3">Categories</h3>
+                    
+                    <div class="text-gray-700 space-y-2">
+                        <a href="" class="flex items-center font-semibold leading-4 uppercase text-sm hover:text-blue-500 transition">
+                            <span class="mr-2">
+                                <i class="fa fa-folder-open"></i>
+                            </span>
+                            <span>Beauti</span>
+                            <span class="font-normal ml-auto">(12)</span>
+                        </a>
+                        <a href="" class="flex items-center font-semibold leading-4 uppercase text-sm hover:text-blue-500 transition">
+                            <span class="mr-2">
+                                <i class="fa fa-folder-open"></i>
+                            </span>
+                            <span>Business</span>
+                            <span class="font-normal ml-auto">(15)</span>
+                        </a>
+                        <a href="" class="flex items-center font-semibold leading-4 uppercase text-sm hover:text-blue-500 transition">
+                            <span class="mr-2">
+                                <i class="fa fa-folder-open"></i>
+                            </span>
+                            <span>Fashion</span>
+                            <span class="font-normal ml-auto">(5)</span>
+                        </a>
+                        <a href="" class="flex items-center font-semibold leading-4 uppercase text-sm hover:text-blue-500 transition">
+                            <span class="mr-2">
+                                <i class="fa fa-folder-open"></i>
+                            </span>
+                            <span>Food</span>
+                            <span class="font-normal ml-auto">(10)</span>
+                        </a>
+                        <a href="" class="flex items-center font-semibold leading-4 uppercase text-sm hover:text-blue-500 transition">
+                            <span class="mr-2">
+                                <i class="fa fa-folder-open"></i>
+                            </span>
+                            <span>Learn</span>
+                            <span class="font-normal ml-auto">(3)</span>
+                        </a>
+                        <a href="" class="flex items-center font-semibold leading-4 uppercase text-sm hover:text-blue-500 transition">
+                            <span class="mr-2">
+                                <i class="fa fa-folder-open"></i>
+                            </span>
+                            <span>Music</span>
+                            <span class="font-normal ml-auto">(7)</span>
+                        </a>
+                        <a href="" class="flex items-center font-semibold leading-4 uppercase text-sm hover:text-blue-500 transition">
+                            <span class="mr-2">
+                                <i class="fa fa-folder-open"></i>
+                            </span>
+                            <span>Nature</span>
+                            <span class="font-normal ml-auto">(0)</span>
+                        </a>
+                        <a href="" class="flex items-center font-semibold leading-4 uppercase text-sm hover:text-blue-500 transition">
+                            <span class="mr-2">
+                                <i class="fa fa-folder-open"></i>
+                            </span>
+                            <span>People</span>
+                            <span class="font-normal ml-auto">(13)</span>
+                        </a>
+                        <a href="" class="flex items-center font-semibold leading-4 uppercase text-sm hover:text-blue-500 transition">
+                            <span class="mr-2">
+                                <i class="fa fa-folder-open"></i>
+                            </span>
+                            <span>Sports</span>
+                            <span class="font-normal ml-auto">(7)</span>
+                        </a>
+                        <a href="" class="flex items-center font-semibold leading-4 uppercase text-sm hover:text-blue-500 transition">
+                            <span class="mr-2">
+                                <i class="fa fa-folder-open"></i>
+                            </span>
+                            <span>Technology</span>
+                            <span class="font-normal ml-auto">(17)</span>
+                        </a>
+                    </div>
+                </div>
+                <div class="bg-white shadow-sm rounded-sm p-4 mt-8">
+                    <h3 class="text-xl font-semibold text-grey-700 mb-3">Articles recents</h3>
+                    <div class="space-y-4">
+                        <a href="" class="flex group">
+                            <div class="flex-shrink-0">
+                                <img src="images/photo.jpg" alt="image-grafikart" class="w-20 h-14 rounded object-cover">
+                            </div>
+                            <div class="flex-grow pl-3">
+                                <h5 class="text-xs leading-5 font-semibold group-hover:text-blue-500 transition">
+                                    Team Bitbose geared up to attend Blockchain
+                                </h5>
+                                <div class="flex text-gray-400 text-xs items-center">
+                                    <span class="mr-1 text-xs">
+                                        <i class="fa fa-clock"></i>
+                                    </span>
+                                    June 11, 2023
+                                </div>
+                            </div>
+                        </a>
+                        <a href="" class="flex group">
+                            <div class="flex-shrink-0">
+                                <img src="images/image3.jpg" alt="image-grafikart" class="w-20 h-14 rounded object-cover">
+                            </div>
+                            <div class="flex-grow pl-3">
+                                <h5 class="text-xs leading-5 font-semibold group-hover:text-blue-500 transition">
+                                    Team Bitbose geared up to attend Blockchain
+                                </h5>
+                                <div class="flex text-gray-400 text-xs items-center">
+                                    <span class="mr-1 text-xs">
+                                        <i class="fa fa-clock"></i>
+                                    </span>
+                                    June 11, 2023
+                                </div>
+                            </div>
+                        </a>
+                        <a href="" class="flex group">
+                            <div class="flex-shrink-0">
+                                <img src="images/photo4.jpg" alt="image-grafikart" class="w-20 h-14 rounded object-cover">
+                            </div>
+                            <div class="flex-grow pl-3">
+                                <h5 class="text-xs leading-5 font-semibold group-hover:text-blue-500 transition">
+                                    Team Bitbose geared up to attend Blockchain
+                                </h5>
+                                <div class="flex text-gray-400 text-xs items-center">
+                                    <span class="mr-1 text-xs">
+                                        <i class="fa fa-clock"></i>
+                                    </span>
+                                    June 11, 2023
+                                </div>
+                            </div>
+                        </a>
+                    </div>
+                </div>
+            </div>
+
+            <div class="xl:w-6/12 lg:w-8/12 w-full lg:mx-6 space-y-2">
+                    {% block content %}
+
+                    {% endblock content %}
+            </div>
+
+            <div class="xl:w-3/12 lg:w-4/12 w-full mt-8 lg:mt-0">
+                <div class="bg-white shadow-sm rounded-sm p-4">
+                    <h3 class="text-xl font-semibold text-grey-700 mb-3">Reseaux sociaux</h3>
+                    <div class="flex gap-2">
+                        <a href="#" class="w-8 h-8 rounded-sm flex items-center justify-center border border-gray-400 text-base text-gray-800">
+                            <i class="fab fa-facebook-f"></i>
+                        </a>
+                        <a href="#" class="w-8 h-8 rounded-sm flex items-center justify-center border border-gray-400 text-base text-gray-800">
+                            <i class="fab fa-twitter"></i>
+                        </a>
+                        <a href="#" class="w-8 h-8 rounded-sm flex items-center justify-center border border-gray-400 text-base text-gray-800">
+                            <i class="fab fa-instagram"></i>
+                        </a>
+                        <a href="#" class="w-8 h-8 rounded-sm flex items-center justify-center border border-gray-400 text-base text-gray-800">
+                            <i class="fab fa-pinterest-p"></i>
+                        </a>
+                        <a href="#" class="w-8 h-8 rounded-sm flex items-center justify-center border border-gray-400 text-base text-gray-800">
+                            <i class="fab fa-linkedin-in"></i>
+                        </a>
+                    </div>
+                </div>
+
+                <div class="bg-white shadow-sm rounded-sm p-4 mt-8">
+                    <h3 class="text-xl font-semibold text-grey-700 mb-3">Articles populaires</h3>
+                    <div class="space-y-4">
+                        <a href="" class="flex group">
+                            <div class="flex-shrink-0">
+                                <img src="images/photo.jpg" alt="image-grafikart" class="w-20 h-14 rounded object-cover">
+                            </div>
+                            <div class="flex-grow pl-3">
+                                <h5 class="text-xs leading-5 font-semibold group-hover:text-blue-500 transition">
+                                    Team Bitbose geared up to attend Blockchain
+                                </h5>
+                                <div class="flex text-gray-400 text-xs items-center">
+                                    <span class="mr-1 text-xs">
+                                        <i class="fa fa-clock"></i>
+                                    </span>
+                                    June 11, 2023
+                                </div>
+                            </div>
+                        </a>
+                        <a href="" class="flex group">
+                            <div class="flex-shrink-0">
+                                <img src="images/image3.jpg" alt="image-grafikart" class="w-20 h-14 rounded object-cover">
+                            </div>
+                            <div class="flex-grow pl-3">
+                                <h5 class="text-xs leading-5 font-semibold group-hover:text-blue-500 transition">
+                                    Team Bitbose geared up to attend Blockchain
+                                </h5>
+                                <div class="flex text-gray-400 text-xs items-center">
+                                    <span class="mr-1 text-xs">
+                                        <i class="fa fa-clock"></i>
+                                    </span>
+                                    June 11, 2023
+                                </div>
+                            </div>
+                        </a>
+                        <a href="" class="flex group">
+                            <div class="flex-shrink-0">
+                                <img src="images/photo4.jpg" alt="image-grafikart" class="w-20 h-14 rounded object-cover">
+                            </div>
+                            <div class="flex-grow pl-3">
+                                <h5 class="text-xs leading-5 font-semibold group-hover:text-blue-500 transition">
+                                    Team Bitbose geared up to attend Blockchain
+                                </h5>
+                                <div class="flex text-gray-400 text-xs items-center">
+                                    <span class="mr-1 text-xs">
+                                        <i class="fa fa-clock"></i>
+                                    </span>
+                                    June 11, 2023
+                                </div>
+                            </div>
+                        </a>
+                    </div>
+                </div>
+
+                <div class="bg-white shadow-sm rounded-sm p-4 mt-8">
+                    <h3 class="text-xl font-semibold text-grey-700 mb-3">Tags</h3>
+                    <div class="flex flex-wrap gap-2">
+                        <a href="#" class="px-3 py-1 text-xs border border-gray-200 rounded-sm hover:bg-blue-500 hover:text-white transition">@beauti</a>
+                        <a href="#" class="px-3 py-1 text-xs border border-gray-200 rounded-sm hover:bg-blue-500 hover:text-white transition">@sports</a>
+                        <a href="#" class="px-3 py-1 text-xs border border-gray-200 rounded-sm hover:bg-blue-500 hover:text-white transition">@business</a>
+                        <a href="#" class="px-3 py-1 text-xs border border-gray-200 rounded-sm hover:bg-blue-500 hover:text-white transition">@politics</a>
+                        <a href="#" class="px-3 py-1 text-xs border border-gray-200 rounded-sm hover:bg-blue-500 hover:text-white transition">@computer</a>
+                        <a href="#" class="px-3 py-1 text-xs border border-gray-200 rounded-sm hover:bg-blue-500 hover:text-white transition">@coding</a>
+                        <a href="#" class="px-3 py-1 text-xs border border-gray-200 rounded-sm hover:bg-blue-500 hover:text-white transition">@web-design</a>
+                        <a href="#" class="px-3 py-1 text-xs border border-gray-200 rounded-sm hover:bg-blue-500 hover:text-white transition">@web-app</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <footer class="py-4 bg-white border-t">
+        <p class="text-sm text-center">
+            Copyright &copy; 2021 <span class="font-semibold">Alex Esaki</span>
+            Tous droits reserves
+        </p>
+    </footer>
+
+    <div class="fixed w-full h-full bg-black left-0 top-0 z-10  xl:hidden bg-opacity-25 opacity-0 invisible transition-all duration-500" id="sidebar_wrapper">
+        <div class="fixed top-0 w-72 h-full bg-white shadow-md z-10 flex flex-col p-4">
+            <h3 class="text-xl font-semibold text-gray-700 mb-3">Rechercher</h3>
+            
+            <div class="relative mb-3">
+                <span class="absolute left-3 top-2 text-sm text-gray-500">
+                    <i class="fa fa-search"></i>
+                </span>
+                <input type="text" class="block w-full border-none rounded-3xl pl-11 pr-2 py-2 focus:outline-none bg-gray-50 text-sm text-gray-700 shadow-sm" placeholder="Recherche...">
+            </div>
+
+            <hr class="my-3">
+
+            <h3 class="text-xl font-semibold text-gray-700 mb-3">Menu</h3>
+            
+            <div class="flex flex-col space-y-4">
+                <a href="" class="flex font-semibold text-sm hover:text-blue-500 transition">
+                    <span class="mr-2">
+                        <i class="fa fa-home"></i>
+                    </span>
+                    Accueil
+                </a>
+                <a href="" class="flex font-semibold text-sm hover:text-blue-500 transition">
+                    <span class="mr-2">
+                        <i class="fa fa-file-alt"></i>
+                    </span>
+                    A propos
+                </a>
+                <a href="" class="flex font-semibold text-sm hover:text-blue-500 transition">
+                    <span class="mr-2">
+                        <i class="fa fa-phone"></i>
+                    </span>
+                    Contact
+                </a>
+            </div>
+
+            <hr class="my-3">
+
+            <h3 class="text-xl font-semibold text-gray-700 mb-3">Categories</h3>
+                    
+            <div class="text-gray-700 space-y-2">
+                <a href="" class="flex items-center font-semibold leading-4 uppercase text-sm hover:text-blue-500 transition">
+                    <span class="mr-2">
+                        <i class="fa fa-folder-open"></i>
+                    </span>
+                    <span>Beauti</span>
+                    <span class="font-normal ml-auto">(12)</span>
+                </a>
+                <a href="" class="flex items-center font-semibold leading-4 uppercase text-sm hover:text-blue-500 transition">
+                    <span class="mr-2">
+                        <i class="fa fa-folder-open"></i>
+                    </span>
+                    <span>Business</span>
+                    <span class="font-normal ml-auto">(15)</span>
+                </a>
+                <a href="" class="flex items-center font-semibold leading-4 uppercase text-sm hover:text-blue-500 transition">
+                    <span class="mr-2">
+                        <i class="fa fa-folder-open"></i>
+                    </span>
+                    <span>Fashion</span>
+                    <span class="font-normal ml-auto">(5)</span>
+                </a>
+                <a href="" class="flex items-center font-semibold leading-4 uppercase text-sm hover:text-blue-500 transition">
+                    <span class="mr-2">
+                        <i class="fa fa-folder-open"></i>
+                    </span>
+                    <span>Food</span>
+                    <span class="font-normal ml-auto">(10)</span>
+                </a>
+                <a href="" class="flex items-center font-semibold leading-4 uppercase text-sm hover:text-blue-500 transition">
+                    <span class="mr-2">
+                        <i class="fa fa-folder-open"></i>
+                    </span>
+                    <span>Learn</span>
+                    <span class="font-normal ml-auto">(3)</span>
+                </a>
+                <a href="" class="flex items-center font-semibold leading-4 uppercase text-sm hover:text-blue-500 transition">
+                    <span class="mr-2">
+                        <i class="fa fa-folder-open"></i>
+                    </span>
+                    <span>Music</span>
+                    <span class="font-normal ml-auto">(7)</span>
+                </a>
+                <a href="" class="flex items-center font-semibold leading-4 uppercase text-sm hover:text-blue-500 transition">
+                    <span class="mr-2">
+                        <i class="fa fa-folder-open"></i>
+                    </span>
+                    <span>Nature</span>
+                    <span class="font-normal ml-auto">(0)</span>
+                </a>
+                <a href="" class="flex items-center font-semibold leading-4 uppercase text-sm hover:text-blue-500 transition">
+                    <span class="mr-2">
+                        <i class="fa fa-folder-open"></i>
+                    </span>
+                    <span>People</span>
+                    <span class="font-normal ml-auto">(13)</span>
+                </a>
+                <a href="" class="flex items-center font-semibold leading-4 uppercase text-sm hover:text-blue-500 transition">
+                    <span class="mr-2">
+                        <i class="fa fa-folder-open"></i>
+                    </span>
+                    <span>Sports</span>
+                    <span class="font-normal ml-auto">(7)</span>
+                </a>
+                <a href="" class="flex items-center font-semibold leading-4 uppercase text-sm hover:text-blue-500 transition">
+                    <span class="mr-2">
+                        <i class="fa fa-folder-open"></i>
+                    </span>
+                    <span>Technology</span>
+                    <span class="font-normal ml-auto">(17)</span>
+                </a>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        document.querySelector("#open_sidebar").addEventListener('click', function() {
+            document.querySelector("#sidebar_wrapper").classList.remove("opacity-0")
+            document.querySelector("#sidebar_wrapper").classList.remove("invisible")
+        })
+
+        document.body.addEventListener('click', function(e) {
+            if(e.target.id === 'sidebar_wrapper') {
+                document.querySelector("#sidebar_wrapper").classList.add("opacity-0")
+                document.querySelector("#sidebar_wrapper").classList.add("invisible")
+            }
+        })
+    </script>
+</body>
+</html>
