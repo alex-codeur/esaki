@@ -151,54 +151,23 @@
                 <div class="bg-white shadow-sm rounded-sm p-4 mt-8">
                     <h3 class="text-xl font-semibold text-grey-700 mb-3">Articles recents</h3>
                     <div class="space-y-4">
-                        <a href="" class="flex group">
-                            <div class="flex-shrink-0">
-                                <img src="images/photo.jpg" alt="image-grafikart" class="w-20 h-14 rounded object-cover">
-                            </div>
-                            <div class="flex-grow pl-3">
-                                <h5 class="text-xs leading-5 font-semibold group-hover:text-blue-500 transition">
-                                    Team Bitbose geared up to attend Blockchain
-                                </h5>
-                                <div class="flex text-gray-400 text-xs items-center">
-                                    <span class="mr-1 text-xs">
-                                        <i class="fa fa-clock"></i>
-                                    </span>
-                                    June 11, 2023
+                        {% for post in posts %}
+                            <a href="" class="flex group">
+                                <div class="flex-shrink-0">
+                                    {% if post.image %}
+                                        <img src="{{ post.image.url }}" alt="traversymedia" class="w-20 h-14 object-cover rounded transform hover:scale-110 transition duration-500">
+                                    {% endif %}
                                 </div>
-                            </div>
-                        </a>
-                        <a href="" class="flex group">
-                            <div class="flex-shrink-0">
-                                <img src="images/image3.jpg" alt="image-grafikart" class="w-20 h-14 rounded object-cover">
-                            </div>
-                            <div class="flex-grow pl-3">
-                                <h5 class="text-xs leading-5 font-semibold group-hover:text-blue-500 transition">
-                                    Team Bitbose geared up to attend Blockchain
-                                </h5>
-                                <div class="flex text-gray-400 text-xs items-center">
-                                    <span class="mr-1 text-xs">
-                                        <i class="fa fa-clock"></i>
-                                    </span>
-                                    June 11, 2023
+                                <div class="flex-grow pl-1">
+                                    <h5 class="text-xs leading-5 font-semibold group-hover:text-blue-500 transition">
+                                        {{ post.title|truncatechars:25 }}
+                                    </h5>
+                                    <div class="flex text-gray-400 text-xs items-center">
+                                        Publié il y a {{ post.publish|timesince }}
+                                    </div>
                                 </div>
-                            </div>
-                        </a>
-                        <a href="" class="flex group">
-                            <div class="flex-shrink-0">
-                                <img src="images/photo4.jpg" alt="image-grafikart" class="w-20 h-14 rounded object-cover">
-                            </div>
-                            <div class="flex-grow pl-3">
-                                <h5 class="text-xs leading-5 font-semibold group-hover:text-blue-500 transition">
-                                    Team Bitbose geared up to attend Blockchain
-                                </h5>
-                                <div class="flex text-gray-400 text-xs items-center">
-                                    <span class="mr-1 text-xs">
-                                        <i class="fa fa-clock"></i>
-                                    </span>
-                                    June 11, 2023
-                                </div>
-                            </div>
-                        </a>
+                            </a>
+                        {% endfor %}
                     </div>
                 </div>
             </div>
@@ -234,54 +203,23 @@
                 <div class="bg-white shadow-sm rounded-sm p-4 mt-8">
                     <h3 class="text-xl font-semibold text-grey-700 mb-3">Articles populaires</h3>
                     <div class="space-y-4">
-                        <a href="" class="flex group">
-                            <div class="flex-shrink-0">
-                                <img src="images/photo.jpg" alt="image-grafikart" class="w-20 h-14 rounded object-cover">
-                            </div>
-                            <div class="flex-grow pl-3">
-                                <h5 class="text-xs leading-5 font-semibold group-hover:text-blue-500 transition">
-                                    Team Bitbose geared up to attend Blockchain
-                                </h5>
-                                <div class="flex text-gray-400 text-xs items-center">
-                                    <span class="mr-1 text-xs">
-                                        <i class="fa fa-clock"></i>
-                                    </span>
-                                    June 11, 2023
+                        {% for post in posts %}
+                            <a href="" class="flex group">
+                                <div class="flex-shrink-0">
+                                    {% if post.image %}
+                                        <img src="{{ post.image.url }}" alt="traversymedia" class="w-20 h-14 object-cover rounded transform hover:scale-110 transition duration-500">
+                                    {% endif %}
                                 </div>
-                            </div>
-                        </a>
-                        <a href="" class="flex group">
-                            <div class="flex-shrink-0">
-                                <img src="images/image3.jpg" alt="image-grafikart" class="w-20 h-14 rounded object-cover">
-                            </div>
-                            <div class="flex-grow pl-3">
-                                <h5 class="text-xs leading-5 font-semibold group-hover:text-blue-500 transition">
-                                    Team Bitbose geared up to attend Blockchain
-                                </h5>
-                                <div class="flex text-gray-400 text-xs items-center">
-                                    <span class="mr-1 text-xs">
-                                        <i class="fa fa-clock"></i>
-                                    </span>
-                                    June 11, 2023
+                                <div class="flex-grow pl-1">
+                                    <h5 class="text-xs leading-5 font-semibold group-hover:text-blue-500 transition">
+                                        {{ post.title|truncatechars:25 }}
+                                    </h5>
+                                    <div class="flex text-gray-400 text-xs items-center">
+                                        Publié il y a {{ post.publish|timesince }}
+                                    </div>
                                 </div>
-                            </div>
-                        </a>
-                        <a href="" class="flex group">
-                            <div class="flex-shrink-0">
-                                <img src="images/photo4.jpg" alt="image-grafikart" class="w-20 h-14 rounded object-cover">
-                            </div>
-                            <div class="flex-grow pl-3">
-                                <h5 class="text-xs leading-5 font-semibold group-hover:text-blue-500 transition">
-                                    Team Bitbose geared up to attend Blockchain
-                                </h5>
-                                <div class="flex text-gray-400 text-xs items-center">
-                                    <span class="mr-1 text-xs">
-                                        <i class="fa fa-clock"></i>
-                                    </span>
-                                    June 11, 2023
-                                </div>
-                            </div>
-                        </a>
+                            </a>
+                        {% endfor %}
                     </div>
                 </div>
 

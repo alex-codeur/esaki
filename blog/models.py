@@ -2,6 +2,7 @@ from django.db import models
 from django.utils import timezone
 from django.contrib.auth.models import User
 from PIL import Image
+from django.utils.html import format_html
 
 # Create your models here.
 
@@ -31,3 +32,6 @@ class Post(models.Model):
             output_size = (250, 250)
             img.thumbnail(output_size)
             img.save(self.image.path)
+            
+    def image_tag(self):
+        return format_html('<img src="{}" style="width:50px; height:50px;border-radius:50%;"/>'.format(self.image.url))

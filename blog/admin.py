@@ -5,7 +5,7 @@ from .models import Post
 
 @admin.register(Post)
 class PostAdmin(admin.ModelAdmin):
-    list_display = ('title', 'status', 'created', 'publish', 'author')
+    list_display = ('image_tag', 'title', 'status', 'created', 'publish', 'author')
     prepopulated_fields = {'slug': ('title',)}
     search_fields = ('title', 'body')
     ordering = ('author', 'status', 'publish')
