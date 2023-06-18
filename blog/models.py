@@ -4,7 +4,7 @@ from django.contrib.auth.models import User
 from PIL import Image
 from django.utils.html import format_html
 
-# Create your models here.
+# Post model
 
 class Post(models.Model):
     STATUS_CHOICES = (
@@ -35,3 +35,18 @@ class Post(models.Model):
             
     def image_tag(self):
         return format_html('<img src="{}" style="width:50px; height:50px;border-radius:50%;"/>'.format(self.image.url))
+    
+    
+# Comment model
+
+class Comment(models.Model):
+    post = models.ForeignKey(Post, on_delete=models.CASCADE, related_name='comments')
+    username = models.CharField(max_length=100)
+    email = models.EmailField(max_length=200)
+    body = models.TextField()
+    created = models.DateTimeField(auto_now_add=True)
+    updated = models.DateTimeField(auto_now=True)
+    
+    def __str__(self):
+        return self.post.title
+    

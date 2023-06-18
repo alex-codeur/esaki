@@ -5,7 +5,8 @@ from django.core.paginator import (
     PageNotAnInteger,
 )
 
-from .models import Post
+from .models import Post, Comment
+from blog.forms import CommentForm
 
 # Create your views here.
 
@@ -27,7 +28,18 @@ def post_list(request):
     
     return render(request, "blog/post/list.html", context)
 
+
 def post_detail(request, slug: str):
+    posts = Post.objects.all()[:4]
     post = get_object_or_404(Post, slug=slug)
-    
-    return render(request, 'blog/post/detail.html', {'post': post})
+    comments = Comment.objects.filter(post=post.id)
+    new_comment = None
+    if request.method == 'POST':
+        comment_form = CommentForm(data=request.POST)
+        if comment_form.is_valid():
+            new_comment = comment_form.save(commit=False)
+            new_comment.post = post
+            new_comment.save()
+    else:
+        comment_form = CommentForm()
+    return render(request, 'blog/post/detail.html', {'post': post, 'posts': posts, 'comments': comments, 'new_comment': new_comment, 'comment_form': comment_form})

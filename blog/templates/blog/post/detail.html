@@ -64,46 +64,43 @@
         </div>
     
         <div class="bg-white p-4 rounded-sm shadow-sm mt-8">
-            <h5 class="text-base uppercase font-semibold mb-4">Postez un commentaire</h5>
+            {% if new_comment %}
+                <h3 class="text-base uppercase font-semibold mb-4">Votre commentaire a ete ajoute.</h3>
+            {% else %}
+                <h5 class="text-base uppercase font-semibold mb-4">Postez un commentaire</h5>
+                <form action="" method="post" class="mt-8">
+                    {% csrf_token %}
+                    {{comment_form.as_p}}
+
+                    <button type="submit" class="px-3 py-2 text-sm px-1 text-xs border-gray-200 rounded-sm shadow-sm bg-blue-500 text-white transition">Commenter</button>
+                </form>
+            {% endif %}
+
+
     
-            <form action="#" class="mt-8">
-                <textarea name="comment" class="w-full border border-gray-200 py-3 px-5 text-sm rounded-sm focus:outline-none h-20 focus:border-gray-400" placeholder="Votre commentaire s'il vous plait..."></textarea>
-                <button class="px-3 py-2 text-sm px-1 text-xs border-gray-200 rounded-sm shadow-sm bg-blue-500 text-white transition">Commenter</button>
-            </form>
-    
-            <h2 class="text-gray-500 my-4">12 commentaires</h2>
+            <h2 class="text-gray-500 my-4 text-2xl">
+                {% with comments.count as total_comments %}
+                    {{total_comments}} commentaire{{total_comments|pluralize}}
+                {% endwith %}
+            </h2>
     
             <div class="space-y-4">
-                <div class="flex items-start border-b pb-5 border-gray-200">
-                    <div class="flex-shrink-0">
-                        <img src="images/image.jpg" alt="image" class="w-12 h-12 rounded-full">
+                {% for comment in comments %}
+                    <div class="flex items-start border-b pb-5 border-gray-200">
+                        <div class="flex-shrink-0">
+                            <img src="https://dummyimage.com/720x400" alt="image" class="w-12 h-12 rounded-full">
+                        </div>
+                        <div class="flex-grow pl-4">
+                            <div class="text-base font-semibold">
+                                {{comment.username}}
+                                <span class="text-sm ml-2"> il y a {{comment.created|timesince}}</span>
+                            </div>
+                            <p class="text-sm mt-2">{{comment.body}}</p>
+                        </div>
                     </div>
-                    <div class="flex-grow pl-4">
-                        <div class="text-base font-semibold">Alex Esaki</div>
-                        <p class="text-xs text-gray-400">15 juin 2023 a 17:15</p>
-                        <p class="text-sm mt-2">Great article, nice work</p>
-                    </div>
-                </div>
-                <div class="flex items-start border-b pb-5 border-gray-200">
-                    <div class="flex-shrink-0">
-                        <img src="images/image3.jpg" alt="image" class="w-12 h-12 rounded-full">
-                    </div>
-                    <div class="flex-grow pl-4">
-                        <div class="text-base font-semibold">Brad Traversy</div>
-                        <p class="text-xs text-gray-400">15 juin 2023 a 17:15</p>
-                        <p class="text-sm mt-2">Great article, nice work</p>
-                    </div>
-                </div>
-                <div class="flex items-start pb-5">
-                    <div class="flex-shrink-0">
-                        <img src="images/photo.jpg" alt="image" class="w-12 h-12 rounded-full">
-                    </div>
-                    <div class="flex-grow pl-4">
-                        <div class="text-base font-semibold">Jonathan Boyer</div>
-                        <p class="text-xs text-gray-400">15 juin 2023 a 17:15</p>
-                        <p class="text-sm mt-2">Great article, nice work</p>
-                    </div>
-                </div>
+                    {% empty %}
+                    <h2>Vous pouvez laisser un commentaire.</h2>
+                {% endfor %}
             </div>
         </div>
     
