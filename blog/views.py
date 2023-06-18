@@ -5,14 +5,18 @@ from django.core.paginator import (
     PageNotAnInteger,
 )
 
-from .models import Post, Comment
+from .models import Category, Post, Comment
 from blog.forms import CommentForm
 
 # Create your views here.
 
-def post_list(request):
-    object_list = Post.objects.all()
-    paginator = Paginator(object_list, 4)
+def post_list(request, category=None):
+    posts = Post.objects.all()
+    categories = Category.objects.all()
+    if category:
+        category = get_object_or_404(Category, slug=category)
+        posts = posts.filter(category=category)
+    paginator = Paginator(posts, 4)
     page = request.GET.get('page')
     try:
         posts = paginator.page(page)
@@ -24,6 +28,7 @@ def post_list(request):
     context = {
         'posts': posts,
         'page': page,
+        'categories': categories,
     }
     
     return render(request, "blog/post/list.html", context)

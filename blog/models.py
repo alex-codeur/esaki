@@ -4,9 +4,19 @@ from django.contrib.auth.models import User
 from PIL import Image
 from django.utils.html import format_html
 
+# Category model
+
+class Category(models.Model):
+    name = models.CharField(max_length=250)
+    slug = models.SlugField(max_length=250)
+    
+    def __str__(self) -> str:
+        return self.name
+
 # Post model
 
 class Post(models.Model):
+    category = models.ForeignKey(Category, on_delete=models.CASCADE, related_name="category_posts")
     STATUS_CHOICES = (
         ('draft', 'Draft'),
         ('published', 'Published'),
