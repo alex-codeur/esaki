@@ -1,0 +1,45 @@
+{% extends 'registration/base.html' %}
+
+{% block content %}
+    <div class="flex flex-col items-center justify-center px-6 py-8 mx-auto md:h-screen lg:py-0">
+        <div class="w-full rounded-lg shadow dark:border md:mt-0 sm:max-w-md xl:p-0 dark:bg-gray-800 dark:border-gray-700">
+            <div class="p-6 space-y-4 md:space-y-6 sm:p-8">
+                <h1 class="text-xl font-bold leading-tight tracking-tight text-gray-900 md:text-2xl dark:text-white">
+                    S'inscrire
+                </h1>
+                <form class="space-y-4 md:space-y-6" method="post" action=".">
+                    {% csrf_token %}
+
+                    <div>
+                        <label for="username" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Votre username</label>
+                        {{user_form.username}}
+                    </div>
+                    <div>
+                        <label for="firstname" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Votre firstname</label>
+                        {{user_form.first_name}}
+                    </div>
+                    <div>
+                        <label for="lastname" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Votre lastname</label>
+                        {{user_form.last_name}}
+                    </div>
+                    <div>
+                        <label for="email" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Votre email</label>
+                        {{user_form.email}}
+                    </div>
+                    <div>
+                        <label for="password" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Votre mot de passe</label>
+                        {{user_form.password}}
+                    </div>
+                    <div>
+                        <label for="confirm_password" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Confirmer votre mot de passe</label>
+                        {{user_form.confirm_password}}
+                    </div>
+                    <button type="submit" class="w-full text-white bg-indigo-600 hover:bg-indigo-700 focus:ring-4 focus:outline-none focus:ring-indigo-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-indigo-600 dark:hover:bg-indigo-700 dark:focus:ring-indigo-800">S'inscrire</button>
+                    <p class="text-sm font-light text-gray-500 dark:text-gray-400">
+                        Avez-vous deja un compte? <a href="{% url 'login_view' %}" class="font-medium text-indigo-600 hover:underline dark:text-indigo-500">Alors connectez-vous ici !</a>
+                    </p>
+                </form>
+            </div>
+        </div>
+    </div>
+{% endblock content %}

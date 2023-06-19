@@ -57,10 +57,22 @@
                 <input type="text" class="block w-full border-none rounded-3xl pl-11 pr-2 py-2 focus:outline-none bg-gray-50 text-sm text-gray-700 shadow-sm" placeholder="Recherche...">
             </div>
 
-            <div class="lg:ml-5 ml-auto">
-                <a href="#" class="flex items-center text-sm font-semibold hover:text-blue-500 transition">
-                    Se connecter/S'inscrire
-                </a>
+            <div class="lg:ml-5 ml-auto flex">
+                {% if user.is_authenticated %}
+                    <a href="#" class="flex items-center text-sm font-semibold hover:text-blue-500 transition">
+                        {{user.username}}
+                    </a>/
+                    <a href="{% url 'logout_view' %}" class="flex items-center text-sm font-semibold hover:text-blue-500 transition">
+                        Se deconnecter
+                    </a>
+                {% else %}
+                    <a href="{% url 'login_view' %}" class="flex items-center text-sm font-semibold hover:text-blue-500 transition">
+                        Se connecter
+                    </a>/
+                    <a href="{% url 'register_view' %}" class="flex items-center text-sm font-semibold hover:text-blue-500 transition">
+                        S'inscrire
+                    </a>
+                {% endif %}
             </div>
 
             <div class="ml-4 block xl:hidden text-xl text-gray-700 cursor-pointer hover:text-blue-500 transition" id="open_sidebar">

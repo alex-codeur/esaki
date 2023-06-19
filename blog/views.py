@@ -36,6 +36,7 @@ def post_list(request, category=None):
 
 def post_detail(request, slug: str):
     posts = Post.objects.all()[:4]
+    categories = Category.objects.all()
     post = get_object_or_404(Post, slug=slug)
     comments = Comment.objects.filter(post=post.id)
     new_comment = None
@@ -47,4 +48,4 @@ def post_detail(request, slug: str):
             new_comment.save()
     else:
         comment_form = CommentForm()
-    return render(request, 'blog/post/detail.html', {'post': post, 'posts': posts, 'comments': comments, 'new_comment': new_comment, 'comment_form': comment_form})
+    return render(request, 'blog/post/detail.html', {'post': post, 'posts': posts, 'categories': categories, 'comments': comments, 'new_comment': new_comment, 'comment_form': comment_form})
