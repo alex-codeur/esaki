@@ -54,7 +54,9 @@
                 <span class="absolute left-3 top-2 text-sm text-gray-500">
                     <i class="fa fa-search"></i>
                 </span>
-                <input type="text" class="block w-full border-none rounded-3xl pl-11 pr-2 py-2 focus:outline-none bg-gray-50 text-sm text-gray-700 shadow-sm" placeholder="Recherche...">
+                <form action="{% url 'post_search' %}" method="get">
+                    <input type="text" name="query" class="block w-full border-none rounded-3xl pl-11 pr-2 py-2 focus:outline-none bg-gray-50 text-sm text-gray-700 shadow-sm" placeholder="Recherche...">
+                </form>
             </div>
 
             <div class="lg:ml-5 ml-auto flex">

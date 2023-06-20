@@ -1,17 +1,19 @@
+from django.db.models import Q
 from django.shortcuts import render, get_object_or_404
 from django.core.paginator import (
     Paginator,
     EmptyPage,
     PageNotAnInteger,
 )
+from django.contrib.postgres.search import SearchVector
 
 from .models import Category, Post, Comment
-from blog.forms import CommentForm
+from blog.forms import CommentForm, SearchPost
 
 # Create your views here.
 
 def post_list(request, category=None):
-    posts = Post.objects.all()
+    posts = Post.objects.order_by('-publish')
     categories = Category.objects.all()
     if category:
         category = get_object_or_404(Category, slug=category)
@@ -49,3 +51,16 @@ def post_detail(request, slug: str):
     else:
         comment_form = CommentForm()
     return render(request, 'blog/post/detail.html', {'post': post, 'posts': posts, 'categories': categories, 'comments': comments, 'new_comment': new_comment, 'comment_form': comment_form})
+
+
+def post_search(request):
+    query = None
+    results = []
+    search_form = SearchPost()
+    if 'query' in request.GET:
+        search_form = SearchPost(request.GET)
+        if search_form.is_valid():
+            query = search_form.cleaned_data['query']
+            results = Post.objects.filter(Q(title__icontains=query) | Q(body__icontains=query))
+            
+    return render(request, 'blog/post/search.html', {'search_form': search_form, 'query': query, 'results': results,})
