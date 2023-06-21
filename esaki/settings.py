@@ -46,6 +46,7 @@ INSTALLED_APPS = [
     
     'taggit',
     'cloudinary',
+    'ckeditor',
     
     'blog.apps.BlogConfig',
     'accounts.apps.AccountsConfig',
@@ -135,6 +136,7 @@ STATIC_URL = 'static/'
 STATICFILES_DIRS = [
     os.path.join(BASE_DIR, 'static')
 ]
+STATIC_ROOT = os.path.join(BASE_DIR, 'static/static')
 
 MEDIA_URL = '/media/'
 MEDIA_ROOT = BASE_DIR / 'media/'
@@ -153,4 +155,12 @@ cloudinary.config(
     api_secret = "4GJJiFQ93oU57r4iF_09tq5ynkM",
 )
 
+# ckeditor config
 
+CKEDITOR_CONFIGS = {
+    'default': {
+        'toolbar': 'full',
+        'height': 500,
+        'width': 950,
+    },
+}

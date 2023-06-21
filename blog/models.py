@@ -6,6 +6,7 @@ from django.utils.html import format_html
 
 from taggit.managers import TaggableManager
 from cloudinary.models import CloudinaryField
+from ckeditor.fields import RichTextField
 
 # Category model
 
@@ -26,7 +27,7 @@ class Post(models.Model):
     )
     title = models.CharField(max_length=250)
     slug = models.SlugField(max_length=250)
-    body = models.TextField()
+    body = RichTextField()
     created = models.DateTimeField(auto_now_add=True)
     updated = models.DateTimeField(auto_now=True)
     status = models.CharField(choices=STATUS_CHOICES, default='draft', max_length=10)
