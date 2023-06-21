@@ -62,6 +62,9 @@
             <div class="lg:ml-5 ml-auto flex">
                 {% if user.is_authenticated %}
                     <a href="#" class="flex items-center text-sm font-semibold hover:text-blue-500 transition">
+                        <span class="mr-2 text-xs">
+                            <i class="fa fa-user"></i>
+                        </span>
                         {{user.username}}
                     </a>/
                     <a href="{% url 'logout_view' %}" class="flex items-center text-sm font-semibold hover:text-blue-500 transition">

@@ -45,8 +45,10 @@ def post_detail(request, slug: str):
     if request.method == 'POST':
         comment_form = CommentForm(data=request.POST)
         if comment_form.is_valid():
+            body = comment_form.cleaned_data['body']
             new_comment = comment_form.save(commit=False)
             new_comment.post = post
+            new_comment.author = request.user
             new_comment.save()
     else:
         comment_form = CommentForm()
@@ -54,6 +56,8 @@ def post_detail(request, slug: str):
 
 
 def post_search(request):
+    posts = Post.objects.all()[:4]
+    categories = Category.objects.all()
     query = None
     results = []
     search_form = SearchPost()
@@ -63,4 +67,4 @@ def post_search(request):
             query = search_form.cleaned_data['query']
             results = Post.objects.filter(Q(title__icontains=query) | Q(body__icontains=query))
             
-    return render(request, 'blog/post/search.html', {'search_form': search_form, 'query': query, 'results': results,})
+    return render(request, 'blog/post/search.html', {'search_form': search_form, 'query': query, 'results': results, 'posts': posts, 'categories': categories})
