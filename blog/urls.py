@@ -8,5 +8,6 @@ urlpatterns = [
     path('search/', views.post_search, name='post_search'),
     path('', views.post_list, name='post_list'),
     path('category/<slug:category>/', views.post_list, name='category_post_list'),
+    path('tag/<slug:tag_slug>/', views.post_list, name='tag_post_list'),
     path('<slug>/', views.post_detail, name='post_detail'),
 ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

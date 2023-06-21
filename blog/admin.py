@@ -9,11 +9,12 @@ class CategoryAdmin(admin.ModelAdmin):
 
 @admin.register(Post)
 class PostAdmin(admin.ModelAdmin):
-    list_display = ('image_tag', 'title', 'status', 'created', 'publish', 'author')
+    list_display = ('image_tag', 'title', 'status', 'tags', 'created', 'publish', 'author')
     prepopulated_fields = {'slug': ('title',)}
     search_fields = ('title', 'body')
     ordering = ('author', 'status', 'publish')
     list_filter = ('author', 'created', 'publish')
+    list_editable = ['status', 'tags']
     
 @admin.register(Comment)
 class CommentAdmin(admin.ModelAdmin):

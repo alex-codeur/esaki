@@ -4,6 +4,8 @@ from django.contrib.auth.models import User
 from PIL import Image
 from django.utils.html import format_html
 
+from taggit.managers import TaggableManager
+
 # Category model
 
 class Category(models.Model):
@@ -30,6 +32,7 @@ class Post(models.Model):
     publish = models.DateTimeField(default=timezone.now())
     author = models.ForeignKey(User, on_delete=models.CASCADE, related_name='posted')
     image = models.ImageField(upload_to='uploads/', blank=True, null=True)
+    tags = TaggableManager()
     
     def __str__(self) -> str:
         return self.title
