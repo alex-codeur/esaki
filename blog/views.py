@@ -1,4 +1,4 @@
-from django.db.models import Q
+from django.db.models import Q, Count
 from django.shortcuts import render, get_object_or_404
 from django.core.paginator import (
     Paginator,
@@ -14,7 +14,7 @@ from blog.forms import CommentForm, SearchPost
 # Create your views here.
 
 def post_list(request, category=None, tag_slug=None):
-    posts = Post.objects.order_by('-publish')
+    posts = Post.published.order_by('-publish')
     categories = Category.objects.all()
     tags = Tag.objects.all()
     tag = None
@@ -47,7 +47,7 @@ def post_list(request, category=None, tag_slug=None):
 
 
 def post_detail(request, slug: str):
-    posts = Post.objects.all()[:4]
+    posts = Post.published.all()[:4]
     categories = Category.objects.all()
     tags = Tag.objects.all()
     post = get_object_or_404(Post, slug=slug)
@@ -63,11 +63,25 @@ def post_detail(request, slug: str):
             new_comment.save()
     else:
         comment_form = CommentForm()
-    return render(request, 'blog/post/detail.html', {'post': post, 'posts': posts, 'categories': categories, 'comments': comments, 'new_comment': new_comment, 'comment_form': comment_form, 'tags': tags})
+    
+    posts_tag_ids = post.tags.values_list('id', flat=True)
+    similar_post = Post.published.filter(tags__in=posts_tag_ids).exclude(id=post.id)
+    similar_post = similar_post.annotate(same_tags=Count('tags')).order_by('-same_tags', '-publish')[:3]
+    
+    return render(request, 'blog/post/detail.html', {
+        'post': post,
+        'posts': posts,
+        'categories': categories, 
+        'comments': comments, 
+        'new_comment': new_comment,
+        'comment_form': comment_form, 
+        'tags': tags,
+        'similar_post': similar_post,
+    })
 
 
 def post_search(request):
-    posts = Post.objects.all()[:4]
+    posts = Post.published.all()[:4]
     categories = Category.objects.all()
     tags = Tag.objects.all()
     query = None
@@ -77,6 +91,6 @@ def post_search(request):
         search_form = SearchPost(request.GET)
         if search_form.is_valid():
             query = search_form.cleaned_data['query']
-            results = Post.objects.filter(Q(title__icontains=query) | Q(body__icontains=query))
+            results = Post.published.filter(Q(title__icontains=query) | Q(body__icontains=query))
             
     return render(request, 'blog/post/search.html', {'search_form': search_form, 'query': query, 'results': results, 'posts': posts, 'categories': categories, 'tags': tags})

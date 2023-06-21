@@ -8,6 +8,11 @@ from taggit.managers import TaggableManager
 from cloudinary.models import CloudinaryField
 from ckeditor.fields import RichTextField
 
+
+class PublishedManager(models.Manager):
+    def get_queryset(self):
+        return super(PublishedManager, self).get_queryset().filter(status='published')
+
 # Category model
 
 class Category(models.Model):
@@ -35,6 +40,8 @@ class Post(models.Model):
     author = models.ForeignKey(User, on_delete=models.CASCADE, related_name='posted')
     image = CloudinaryField('image')
     tags = TaggableManager()
+    objects = models.Manager() # Default manager
+    published = PublishedManager() # Custom manager
     
     def __str__(self) -> str:
         return self.title
