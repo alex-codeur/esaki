@@ -6,7 +6,7 @@
             <div class="flex-shrink-0 card-image">
                 <a href="#" class="hoverflow-hidden block">
                     {% if post.image %}
-                        <img src="{{ post.image.url }}" alt="traversymedia" class="object-cover rounded transform hover:scale-110 transition duration-500">
+                        <img src="{{ post.image.url }}" alt="traversymedia" class="object-cover h-38 w-60 rounded transform hover:scale-110 transition duration-500">
                     {% endif %}
                 </a>
             </div>
@@ -17,7 +17,7 @@
                         <a href="{% url 'post_detail' post.slug %}">{{ post.title|truncatechars:60 }}</a>
                     </h2>
                 </a>
-                <p class="text-gray-500 text-xs mt-2">
+                <p class="text-gray-500 text-xs">
                     {{post.body|truncatechars:50}}
                 </p>
                 
@@ -28,7 +28,7 @@
                     {% if not forloop.last %}, {% endif %}
                 {% endfor %}
 
-                <div class="flex mt-2 space-x-5 justify-between">
+                <div class="flex space-x-5 justify-between">
                     <div class="flex items-center text-gray-400 text-sm">
                         <span class="mr-2 text-xs">
                             <i class="fa fa-user"></i>

@@ -3,6 +3,8 @@ from .models import Category, Post, Comment
 
 # Register your models here.
 
+# admin.site.register(Post)
+
 @admin.register(Category)
 class CategoryAdmin(admin.ModelAdmin):
     list_display = ['name']

@@ -16,6 +16,11 @@ from pathlib import Path
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
 
+# Cloudinary imports
+import cloudinary
+import cloudinary.uploader
+import cloudinary.api
+
 
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/4.2/howto/deployment/checklist/
@@ -40,6 +45,7 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     
     'taggit',
+    'cloudinary',
     
     'blog.apps.BlogConfig',
     'accounts.apps.AccountsConfig',
@@ -137,3 +143,14 @@ MEDIA_ROOT = BASE_DIR / 'media/'
 # https://docs.djangoproject.com/en/4.2/ref/settings/#default-auto-field
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
+
+
+# Cloudinary - Django integration
+
+cloudinary.config(
+    cloud_name = "dfmpvse6t",
+    api_key = "425744771254925",
+    api_secret = "4GJJiFQ93oU57r4iF_09tq5ynkM",
+)
+
+
