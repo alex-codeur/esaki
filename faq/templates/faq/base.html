@@ -18,7 +18,7 @@
     
     <!-- style -->
     <link rel="stylesheet" href="{% static 'css/main.css' %}">
-    <title>Mon blog</title>
+    <title>FAQ</title>
 </head>
 <body class="text-gray-600">
     <nav class="bg-white shadow-sm">
@@ -80,47 +80,12 @@
 
     <main class="py-12 bg-gray-100 min-h-screen">
         <div class="container mx-auto px-4 flex flex-wrap lg:flex-nowrap">
-            <div class="w-3/12 hidden xl:block">
-                <div class="bg-white shadow-sm rounded-sm p-4">
-                    <h3 class="text-2xl font-semibold text-gray-700 mb-3">Categories</h3>
-                    
-                    <div class="text-gray-700 space-y-2">
-                        {% for cat in categories %}
-                            <a href="{% url 'category_post_list' cat.slug %}" class="flex items-center font-semibold leading-4 uppercase text-sm hover:text-blue-500 transition">
-                                <span class="mr-2">
-                                    <i class="fa fa-folder-open"></i>
-                                </span>
-                                <span>{{cat.name}}</span>
-                                <span class="font-normal ml-auto">(12)</span>
-                            </a>
-                        {% endfor %}
-                    </div>
-                </div>
-                <div class="bg-white shadow-sm rounded-sm p-4 mt-8">
-                    <h3 class="text-2xl font-semibold text-grey-700 mb-3">Articles recents</h3>
-                    <div class="space-y-4">
-                        {% for post in posts %}
-                            <a href="" class="flex group">
-                                <div class="flex-shrink-0">
-                                    {% if post.image %}
-                                        <img src="{{ post.image.url }}" alt="traversymedia" class="w-20 h-14 object-cover rounded transform hover:scale-110 transition duration-500">
-                                    {% endif %}
-                                </div>
-                                <div class="flex-grow pl-1">
-                                    <h5 class="text-xs leading-5 font-semibold group-hover:text-blue-500 transition">
-                                        {{ post.title|truncatechars:25 }}
-                                    </h5>
-                                    <div class="flex text-gray-400 text-xs items-center">
-                                        Publié il y a {{ post.publish|timesince }}
-                                    </div>
-                                </div>
-                            </a>
-                        {% endfor %}
-                    </div>
-                </div>
-            </div>
-
             <div class="xl:w-6/12 lg:w-8/12 w-full lg:mx-6 space-y-2">
+                    <div class="flex items-center justify-between bg-white px-3 py-2 flex-center rounded-sm mb-4">
+                        <h5 class="text-base uppercase font-semibold">Top Questions</h5>
+                        <button class="px-3 py-2 text-sm px-1 text-xs border-gray-200 rounded-sm shadow-sm bg-blue-500 text-white transition">Poser une question</button>
+                    </div>
+
                     {% block content %}
 
                     {% endblock content %}
@@ -145,40 +110,6 @@
                         <a href="#" class="w-8 h-8 rounded-sm flex items-center justify-center border border-gray-400 text-base text-gray-800">
                             <i class="fab fa-linkedin-in"></i>
                         </a>
-                    </div>
-                </div>
-
-                <div class="bg-white shadow-sm rounded-sm p-4 mt-8">
-                    <h3 class="text-xl font-semibold text-grey-700 mb-3">Articles populaires</h3>
-                    <div class="space-y-4">
-                        {% for post in posts %}
-                            <a href="" class="flex group">
-                                <div class="flex-shrink-0">
-                                    {% if post.image %}
-                                        <img src="{{ post.image.url }}" alt="traversymedia" class="w-20 h-14 object-cover rounded transform hover:scale-110 transition duration-500">
-                                    {% endif %}
-                                </div>
-                                <div class="flex-grow pl-1">
-                                    <h5 class="text-xs leading-5 font-semibold group-hover:text-blue-500 transition">
-                                        {{ post.title|truncatechars:25 }}
-                                    </h5>
-                                    <div class="flex text-gray-400 text-xs items-center">
-                                        Publié il y a {{ post.publish|timesince }}
-                                    </div>
-                                </div>
-                            </a>
-                        {% endfor %}
-                    </div>
-                </div>
-
-                <div class="bg-white shadow-sm rounded-sm p-4 mt-8">
-                    <h3 class="text-xl font-semibold text-grey-700 mb-3">Tags</h3>
-                    <div class="flex flex-wrap gap-2">
-                        {% for tag in tags %}
-                            <a href="{% url 'tag_post_list' tag.slug %}" class="text-blue-500 p-2 py-1 text-xs border border-gray-200 rounded-sm hover:bg-blue-500 hover:text-white transition">
-                                #{{ tag.name }}
-                            </a>
-                        {% endfor %}
                     </div>
                 </div>
             </div>
