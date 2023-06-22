@@ -12,9 +12,9 @@
         {% for post in results %}
                 <div class="bg-white p-4 shadow-sm rounded-sm flex card">
                     <div class="flex-shrink-0 card-image">
-                        <a href="#" class="hoverflow-hidden block">
+                        <a href="{% url 'post_detail' post.slug %}" class="hoverflow-hidden block">
                             {% if post.image %}
-                                <img src="{{ post.image.url }}" alt="traversymedia" class="object-cover rounded transform hover:scale-110 transition duration-500">
+                                <img src="{{ post.image.url }}" alt="traversymedia" class="object-cover h-38 w-60 rounded transform hover:scale-110 transition duration-500">
                             {% endif %}
                         </a>
                     </div>

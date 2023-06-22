@@ -20,14 +20,24 @@
     <link rel="stylesheet" href="{% static 'css/main.css' %}">
     <title>Mon blog</title>
 </head>
-<body class="text-gray-600">
+  <body class="text-gray-600">
+    <div>
+        {% if messages %}
+            {% for message in messages %}
+                <div>
+                    <h4>{{ message }}</h4>
+                </div>
+            {% endfor %}
+        {% endif %}
+    </div>
+
     <section class="h-screen">
-        <div class="h-full">
+        <div>
           <!-- Left column container with background-->
           <div
-            class="g-6 flex h-full flex-wrap items-center justify-center lg:justify-between">
+            class="g-6 flex flex-wrap items-center justify-center lg:justify-between">
             <div
-              class="shrink-1 mb-12 grow-0 basis-auto md:mb-0 md:w-9/12 md:shrink-0 lg:w-6/12 xl:w-6/12">
+              class="shrink-1 grow-0 basis-auto md:mb-0 md:w-9/12 md:shrink-0 lg:w-6/12 xl:w-6/12">
               <img
                 src="https://tecdn.b-cdn.net/img/Photos/new-templates/bootstrap-login-form/draw2.webp"
                 class="w-full"
@@ -41,5 +51,5 @@
           </div>
         </div>
       </section>
-</body>
+  </body>
 </html>
