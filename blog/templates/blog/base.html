@@ -62,9 +62,7 @@
             <div class="lg:ml-5 ml-auto flex">
                 {% if user.is_authenticated %}
                     <a href="{% url 'profile_view' %}" class="flex items-center text-sm font-semibold hover:text-blue-500 transition">
-                        <span class="mr-2 text-xs">
-                            <i class="fa fa-user"></i>
-                        </span>
+                        <img src="{{ user.profile.image.url }}" alt="profile-image" class="object-cover w-6 h-6 rounded-full">
                         {{user.username}}
                     </a>/
                     <a href="{% url 'logout_view' %}" class="flex items-center text-sm font-semibold hover:text-blue-500 transition">
