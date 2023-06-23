@@ -14,7 +14,7 @@
                     </p>
                 {% else %}
                     <p class="text-gray-500 text-xs">
-                        {{question.content|safe|truncatechars:50}}
+                        {{question.content|escape|safe|truncatechars_html:50 }}
                     </p>
                 {% endif %}
 

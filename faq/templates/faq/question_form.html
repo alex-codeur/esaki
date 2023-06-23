@@ -1,5 +1,4 @@
 {% extends "faq/base.html" %}
-{% load tailwind_filters %}
 
 {% block content %}
     <div>
@@ -8,7 +7,16 @@
                 <form action="" method="post" enctype="multipart/form-data">
                     {% csrf_token %}
 
-                    {{form|crispy}}
+                    <div>
+                        <label for="titre" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Titre</label>
+                        {{form.title}}
+                    </div>
+                    <div>
+                        <label for="contenu" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Contenu</label>
+                        {{form.content|safe}}
+                        {{form.media}}
+                    </div>
+                    
                     <button class="px-3 py-2 text-sm px-1 text-xs border-gray-200 rounded-sm shadow-sm bg-green-500 text-white transition">Poster la question</button>
                 </form>
             </div>

@@ -163,7 +163,7 @@ cloudinary.config(
 CKEDITOR_CONFIGS = {
     'default': {
         'toolbar': 'full',
-        'height': 500,
+        'height': 300,
         'width': 950,
     },
 }
