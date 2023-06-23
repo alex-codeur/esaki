@@ -83,7 +83,16 @@
             <div class="xl:w-6/12 lg:w-8/12 w-full lg:mx-6 space-y-2">
                     <div class="flex items-center justify-between bg-white px-3 py-2 flex-center rounded-sm mb-4">
                         <h5 class="text-base uppercase font-semibold">Top Questions</h5>
-                        <button class="px-3 py-2 text-sm px-1 text-xs border-gray-200 rounded-sm shadow-sm bg-blue-500 text-white transition">Poser une question</button>
+                        
+                        {% if user.is_authenticated %}
+                            <a href="{% url 'question_create' %}">
+                                <button class="px-3 py-2 text-sm px-1 text-xs border-gray-200 rounded-sm shadow-sm bg-blue-500 text-white transition">Poser une question</button>
+                            </a>
+                        {% else %}
+                            <a href="{% url 'login_view' %}">
+                                <button class="px-3 py-2 text-sm px-1 text-xs border-gray-200 rounded-sm shadow-sm bg-blue-500 text-white transition">Poser une question</button>
+                            </a>
+                        {% endif %}
                     </div>
 
                     {% block content %}

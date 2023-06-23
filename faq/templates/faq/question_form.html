@@ -1,0 +1,17 @@
+{% extends "faq/base.html" %}
+{% load tailwind_filters %}
+
+{% block content %}
+    <div>
+        <div class="bg-white shadow-sm rounded-sm">
+            <div class="p-4">
+                <form action="" method="post" enctype="multipart/form-data">
+                    {% csrf_token %}
+
+                    {{form|crispy}}
+                    <button class="px-3 py-2 text-sm px-1 text-xs border-gray-200 rounded-sm shadow-sm bg-green-500 text-white transition">Poster la question</button>
+                </form>
+            </div>
+        </div>
+    </div>
+{% endblock content %}

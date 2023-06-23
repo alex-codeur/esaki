@@ -47,6 +47,8 @@ INSTALLED_APPS = [
     'taggit',
     'cloudinary',
     'ckeditor',
+    'crispy_forms',
+    'crispy_tailwind',
     
     'blog.apps.BlogConfig',
     'accounts.apps.AccountsConfig',
@@ -165,3 +167,7 @@ CKEDITOR_CONFIGS = {
         'width': 950,
     },
 }
+
+
+CRISPY_ALLOWED_TEMPLATE_PACKS = 'tailwind'
+CRISPY_TEMPLATE_PACK = 'tailwind'
