@@ -5,7 +5,7 @@
         <div class="bg-white p-4 shadow-sm rounded-sm flex card">
             <div class="mt-0 flex-grow pl-2 card-text">
                 <h2 class="border-b-4 text-sm font-semibold text-gray-700 hover:text-blue-500 transition">
-                    <a href="#">{{ question.title|truncatechars:100 }}</a>
+                    <a href="{% url 'question_detail' question.id %}">{{ question.title|truncatechars:100 }}</a>
                 </h2>
 
                 {% if question.content|wordcount <= 10 %}
