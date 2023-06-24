@@ -1,0 +1,24 @@
+{% extends "faq/base.html" %}
+
+{% block content %}
+    <div>
+        <div class="bg-white shadow-sm rounded-sm">
+            <div class="p-4 flex flex-col items-center">
+                <p class="text-center">Etes-vous sur de vouloir vraiment supprimer la question : <span class="text-blue-500">{{ question.title }}</span></p>
+                <div class="flex items-center">
+                    <form action="" method="post">
+                        {% csrf_token %}
+                        <a href="{% url 'question_delete' question.id %}">
+                            <button type="submit" class="mt-5 text-white right-2.5 bottom-2.5 bg-red-500 hover:bg-red-500 focus:ring-4 focus:outline-none focus:ring-red-500 font-medium rounded-lg text-sm px-4 py-2 dark:bg-red-500 dark:hover:bg-red-500 dark:focus:ring-red-500">Supprimer</button>
+                        </a>
+                    </form>
+                    <p class="ml-2">
+                        <a href="{% url 'question_detail' question.id %}">
+                            <button class="mt-5 text-white right-2.5 bottom-2.5 bg-yellow-500 hover:bg-yellow-500 focus:ring-4 focus:outline-none focus:ring-yellow-500 font-medium rounded-lg text-sm px-4 py-2 dark:bg-yellow-500 dark:hover:bg-yellow-500 dark:focus:ring-yellow-500">Annuler</button>
+                        </a>
+                    </p>
+                </div>
+            </div>
+        </div>
+    </div>
+{% endblock content %}
