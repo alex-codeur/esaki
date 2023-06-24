@@ -3,7 +3,9 @@ from django.http import HttpResponse
 from django.shortcuts import render
 from django.views.generic import ListView, DetailView, CreateView, UpdateView, DeleteView
 from django.contrib.auth.mixins import UserPassesTestMixin, LoginRequiredMixin
-from .models import Question
+from .models import Question, Comment
+from django.urls import reverse, reverse_lazy
+from .forms import CommentForm
 
 # Create your views here.
 class QuestionListView(ListView):
@@ -55,3 +57,25 @@ class QuestionDeleteView(UserPassesTestMixin, LoginRequiredMixin, DeleteView):
         if self.request.user == question.user:
             return True
         return False
+    
+
+class CommentDetailView(CreateView):
+    model = Comment
+    form_class = CommentForm
+    template_name = 'faq/question_detail.html'
+    
+    def form_valid(self, form):
+        form.instance.question_id = self.kwargs['pk']
+        return super().form_valid(form)
+    success_url = reverse_lazy('question_detail')
+    
+
+class AddCommentView(CreateView):
+    model = Comment
+    form_class = CommentForm
+    template_name = 'faq/question_answer.html'
+    
+    def form_valid(self, form):
+        form.instance.question_id = self.kwargs['pk']
+        return super().form_valid(form)
+    success_url = reverse_lazy('question_lists')

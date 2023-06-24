@@ -16,3 +16,19 @@ class Question(models.Model):
     
     def get_absolute_url(self):
         return reverse('question_detail', kwargs={'pk':self.pk})
+    
+
+class Comment(models.Model):
+    question = models.ForeignKey(Question, related_name="comment", on_delete=models.CASCADE)
+    name = models.CharField(max_length=1000)
+    content = RichTextField()
+    date_created = models.DateTimeField(default=timezone.now)
+    
+    def __str__(self) -> str:
+        return '%s - %s' % (self.question.title, self.question.user)
+    
+    def get_absolute_url(self):
+        return reverse('question_detail', kwargs={'pk':self.pk})
+    
+    def save(self, *args, **kwargs):
+        super().save(*args, **kwargs)

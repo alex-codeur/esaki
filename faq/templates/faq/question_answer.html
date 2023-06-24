@@ -1,0 +1,28 @@
+{% extends "faq/base.html" %}
+
+{% block content %}
+    <div>
+        <div class="bg-white shadow-sm rounded-sm">
+            <div class="p-4">
+                <form action="" method="post" enctype="multipart/form-data">
+                    {% csrf_token %}
+
+                    <div>
+                        <label for="titre" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Titre</label>
+                        {{form.name}}
+                    </div>
+                    <div>
+                        <label for="contenu" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Contenu</label>
+                        {{form.content|safe}}
+                        {{form.media}}
+                    </div>
+                    <button type="submit" class="px-3 py-2 text-sm px-1 text-xs border-gray-200 rounded-sm shadow-sm bg-green-500 text-white transition">Repondre a la question</button>
+                </form>
+                
+                <a href="{% url 'question_lists' %}" class="mt-3">
+                    <button class="mt-5 text-white right-2.5 bottom-2.5 bg-gray-500 hover:bg-gray-500 focus:ring-4 focus:outline-none focus:ring-gray-500 font-medium rounded-lg text-sm px-4 py-2 dark:bg-gray-500 dark:hover:bg-gray-500 dark:focus:ring-gray-500"><i class="fa fa-arrow-left"></i></button>
+                </a>
+            </div>
+        </div>
+    </div>
+{% endblock content %}
