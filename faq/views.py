@@ -1,6 +1,6 @@
 from typing import Any
-from django.http import HttpResponse
-from django.shortcuts import render
+from django.shortcuts import render, get_object_or_404
+from django.http import HttpResponseRedirect
 from django.views.generic import ListView, DetailView, CreateView, UpdateView, DeleteView
 from django.contrib.auth.mixins import UserPassesTestMixin, LoginRequiredMixin
 from .models import Question, Comment
@@ -24,6 +24,18 @@ class QuestionListView(ListView):
 
 class QuestionDetailView(DetailView):
     model = Question
+    
+    def get_context_data(self, **kwargs):
+        context = super(QuestionDetailView, self).get_context_data()
+        something = get_object_or_404(Question, id=self.kwargs['pk'])
+        total_likes = something.total_likes()
+        liked = False
+        if something.likes.filter(id=self.request.user.id).exists():
+            liked = True
+            
+        context['total_likes'] = total_likes
+        context['liked'] = liked
+        return context
     
 
 class QuestionCreateView(LoginRequiredMixin, CreateView):
@@ -70,7 +82,7 @@ class CommentDetailView(CreateView):
     success_url = reverse_lazy('question_detail')
     
 
-class AddCommentView(CreateView):
+class AddCommentView(LoginRequiredMixin, CreateView):
     model = Comment
     form_class = CommentForm
     template_name = 'faq/question_answer.html'
@@ -79,3 +91,15 @@ class AddCommentView(CreateView):
         form.instance.question_id = self.kwargs['pk']
         return super().form_valid(form)
     success_url = reverse_lazy('question_lists')
+    
+    
+def like_view(request, pk):
+    post  = get_object_or_404(Question, id=request.POST.get('question_id'))
+    liked = False
+    if post.likes.filter(id=request.user.id).exists():
+        post.likes.remove(request.user)
+        liked = False
+    else:
+        post.likes.add(request.user)
+        liked = True
+    return HttpResponseRedirect(reverse('question_detail', args=[str(pk)]))
