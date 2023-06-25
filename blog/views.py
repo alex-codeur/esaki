@@ -1,5 +1,6 @@
 from django.db.models import Q, Count
-from django.shortcuts import render, get_object_or_404
+from django.contrib import messages
+from django.shortcuts import render, get_object_or_404, redirect
 from django.core.paginator import (
     Paginator,
     EmptyPage,
@@ -94,3 +95,16 @@ def post_search(request):
             results = Post.published.filter(Q(title__icontains=query) | Q(body__icontains=query))
             
     return render(request, 'blog/post/search.html', {'search_form': search_form, 'query': query, 'results': results, 'posts': posts, 'categories': categories, 'tags': tags})
+
+
+def post_like(request, pk):
+    if request.user.is_authenticated:
+        post = get_object_or_404(Post, id=pk)
+        if post.likes.filter(id=request.user.id):
+            post.likes.remove(request.user)
+        else:
+            post.likes.add(request.user)
+        return redirect('post_list')
+    else:
+        messages.success(request, ("You Must Be Logged In To View That Page..."))
+        return redirect('post_list')

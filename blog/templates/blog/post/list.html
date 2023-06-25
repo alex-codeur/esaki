@@ -38,7 +38,19 @@
                         <span class="mr-1 text-xs">
                             <i class="fa fa-clock"></i>
                         </span>
-                        Il y a {{ post.publish|timesince }}
+                        le {{ post.publish|date:"d, M Y" }}
+                    </div>
+                    <div class="flex text-gray-400 text-xs items-center">
+                        {% if user in post.likes.all %}
+                            <span class="mr-1 text-xs">
+                                {{ post.number_of_likes }} <a href="{% url 'post_like' post.id %}"><i class="fa fa-thumbs-down"></i></a>
+                            </span>
+                        {% else %}
+                            <span class="mr-1 text-xs">
+                                {{ post.number_of_likes }} <a href="{% url 'post_like' post.id %}"><i class="fa fa-thumbs-up"></i></a>
+                            </span>
+                        {% endif %}
+                        
                     </div>
                 </div>
             </div>

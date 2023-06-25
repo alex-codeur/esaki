@@ -42,9 +42,14 @@ class Post(models.Model):
     tags = TaggableManager()
     objects = models.Manager() # Default manager
     published = PublishedManager() # Custom manager
+    likes = models.ManyToManyField(User, related_name="post_like", blank=True)
     
     def __str__(self) -> str:
         return self.title
+    
+    # Keep track or count of likes
+    def number_of_likes(self):
+        return self.likes.count()
             
     def image_tag(self):
         return format_html('<img src="{}" style="width:50px; height:50px;border-radius:50%;"/>'.format(self.image.url))
